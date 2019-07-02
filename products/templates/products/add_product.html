@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>Add Product</h1><br>
+<h2>{{ error }}</h2>
+
+<!-- encytype="multipart/form-data" is an encoding type that allows files to be sent through a POST.To allow user to upload files through POST we have to use this encryption. -->
+<form method="POST" action="{% url 'add_prod' %}" enctype="multipart/form-data">
+	<!-- csrf is cross site request forgery -->
+	<!-- Refer  https://docs.djangoproject.com/en/2.2/ref/csrf/    for more details -->
+	{% csrf_token %}
+	Title : <br/>
+	<input type="text" name="title" required> <br/><br/>
+
+	Body : <br/>
+	<textarea name="body" required> </textarea> <br/><br/>
+
+	Url : <br/>
+	<input type="text" name="url" required> <br/><br/> 
+
+	Icon : <br/>
+	<input type="file" name="icon" required> <br/><br/>
+
+	Image : <br/>
+	<input type="file" name="image" required> <br/><br/>
+
+	<input class="btn-primary" type="submit" value="Add Product">
+
+</form>
+</div>
+{% endblock %}

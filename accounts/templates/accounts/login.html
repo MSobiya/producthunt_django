@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>Login</h1><br>
+<h2>{{ error }}</h2>
+<form method="POST" action="{% url 'login' %}">
+	<!-- csrf is cross site request forgery -->
+	<!-- Refer  https://docs.djangoproject.com/en/2.2/ref/csrf/    for more details -->
+	{% csrf_token %}
+	Username : <br/>
+	<input type="text" name="username" required> <br/><br/>
+
+	Password : <br/>
+	<input type="password" name="password" required> <br/><br/>
+
+	<input class="btn-primary" type="submit" value="Login">
+
+</form>
+</div>
+{% endblock %}
