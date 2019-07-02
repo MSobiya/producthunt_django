@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . models import Product
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 #==========================================Main HomePage=============================================
 def product_home(request):
@@ -69,3 +71,12 @@ def upvote(request, prod_id):
 	product.votes += 1
 	product.save()
 	return redirect('/products/' + str(product.id))
+
+
+
+#===============================Products uploaded by specific user===========================
+@login_required(login_url="/accounts/login")
+def my_products(request):
+	user_name = User.objects.get(username=request.user.username)
+	products = Product.objects.filter(hunter = user_name)
+	return render(request, 'products/my_products.html', {'products' : products})

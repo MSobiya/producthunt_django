@@ -54,11 +54,13 @@
       <!-- handling session -->
         {% if user.is_authenticated %}
         <a class="navbar-brand" href="{% url 'add_prod' %}"><img class="d-inline-block align-top" src="{% static 'plus.png' %}" height="30" width="30"></a>
+        <a href="{% url 'my_prod' %}" class="nav-item nav-link">My Products</a>
         <a class="nav-item nav-link" href="javascript:{document.getElementById('log_out').submit()}">Logout</a>
         <form id="log_out" method="POST" action="{% url 'logout' %}">
         {% csrf_token %}
         <input type="hidden">
         </form>
+
         
         {% else %}
 	      <a class="nav-item nav-link" href="{% url 'signup' %}">Sign Up</a>
